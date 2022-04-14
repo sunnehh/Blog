@@ -1,0 +1,82 @@
+<br />
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <form #myform="ngForm" (ngSubmit)="formSubmit(myform)">
+        <div class="form-group">
+          <label>Title</label>
+          <input
+            ngModel
+            #formTitle="ngModel"
+            minlength="1"
+            name="formTitle"
+            type="text"
+            class="form-control"
+            value="{{ post?.title }}"
+            id="formTitle"
+          />
+          <div
+            *ngIf="formTitle.touched && formTitle.errors?.['minlength']"
+            class="alert alert-danger"
+          >
+            Invalid Title
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Featured Image (URL)</label>
+          <input
+            ngModel
+            name="formFeaturedImage"
+            type="text"
+            class="form-control"
+            value="{{ post?.featuredImage }}"
+            id="formFeaturedImage"
+          />
+        </div>
+        <div class="form-group">
+          <label>Post</label>
+          <textarea
+            ngModel
+            name="formPost"
+            class="form-control"
+            style="min-height: 200px"
+            value="{{ post?.post }}"
+            id="formPost"
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label>Category</label>
+          <input
+            ngModel
+            name="formCategory"
+            type="text"
+            class="form-control"
+            value="{{ post?.category }}"
+            id="formCategory"
+          />
+        </div>
+        <div class="form-group">
+          <label>Tags</label>
+          <textarea
+            ngModel
+            name="formTags"
+            class="form-control"
+            value="{{ post?.tags }}"
+            id="formTags"
+          ></textarea>
+        </div>
+
+        <div class="pull-right">
+          <button class="btn btn-danger btn-sm" (click)="deletePost()">
+            Delete Post
+          </button>
+          &nbsp;
+          <button type="submit" class="btn btn-success btn-sm">
+            Update Post
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<br />
