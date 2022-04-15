@@ -85,7 +85,7 @@
         </header>
         <form
           #commentArea="ngForm"
-          (ngSubmit)="submitComment(commentArea)"
+          (ngSubmit)="submitComment(commentArea); commentArea.resetForm()"
           class="commenting-form"
         >
           <div class="row">

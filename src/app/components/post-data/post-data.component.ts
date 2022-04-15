@@ -13,14 +13,15 @@ export class PostDataComponent implements OnInit {
   post!: BlogPost;
   querySub: any;
   comment = {} as Comment;
-
   constructor(private _posts: PostService, private _route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.querySub = this._route.params.subscribe((params) => {
       this._posts.getPostsbyId(params['id']).subscribe((data) => {
         this.post = data;
+        this.post.views++;
       });
+      this._posts.updatePostById(this.post?._id, this.post).subscribe();
     });
   }
 
@@ -37,5 +38,8 @@ export class PostDataComponent implements OnInit {
     this.post.comments.push(this.comment);
     // update the current post
     this._posts.updatePostById(this.post._id, this.post).subscribe();
+    commentArea.value['username'] = '';
+    commentArea.value['usercomment'] = '';
+    console.log(commentArea.value['usercomment']);
   }
 }
