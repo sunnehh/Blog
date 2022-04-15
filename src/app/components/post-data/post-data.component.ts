@@ -21,7 +21,9 @@ export class PostDataComponent implements OnInit {
         this.post = data;
         this.post.views++;
       });
-      this._posts.updatePostById(this.post?._id, this.post).subscribe();
+      setTimeout(() => {
+        this._posts.updatePostById(this.post._id, this.post).subscribe();
+      }, 500);
     });
   }
 
@@ -38,8 +40,5 @@ export class PostDataComponent implements OnInit {
     this.post.comments.push(this.comment);
     // update the current post
     this._posts.updatePostById(this.post._id, this.post).subscribe();
-    commentArea.value['username'] = '';
-    commentArea.value['usercomment'] = '';
-    console.log(commentArea.value['usercomment']);
   }
 }

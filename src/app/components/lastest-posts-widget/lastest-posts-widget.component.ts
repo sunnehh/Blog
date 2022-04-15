@@ -14,13 +14,13 @@ export class LastestPostsWidgetComponent implements OnInit {
   constructor(private posts: PostService) {}
 
   ngOnInit(): void {
-    this.posts.getPosts(1).subscribe(
-      (data) => {
-        this.blogPosts = data.slice(0, 3);
-      },
-      (err) => {
-        this.errorMsg = 'error getting posts!';
-      }
-    );
+    this.posts.getPosts(1).subscribe((data) => {
+      this.blogPosts = data.slice(0, 3);
+    });
+  }
+  public update() {
+    this.posts.getPosts(1).subscribe((data) => {
+      this.blogPosts = data.slice(0, 3);
+    });
   }
 }
